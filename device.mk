@@ -326,6 +326,7 @@ PRODUCT_PACKAGES += \
     android.hardware.light-service.lineage
 
 # Lineage Health
+$(call soong_config_set,lineage_health,charging_control_supports_bypass,false)
 PRODUCT_PACKAGES += \
     vendor.lineage.health-service.default
 
@@ -565,6 +566,9 @@ PRODUCT_PACKAGES += \
     wpa_supplicant \
     wpa_supplicant.conf
 
+PRODUCT_PACKAGES += \
+    NcmTetheringOverlay
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/wifi/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini \
     $(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/p2p_supplicant_overlay.conf \
@@ -592,7 +596,8 @@ PRODUCT_PACKAGES += \
 $(call inherit-product, hardware/samsung-ext/interfaces/debug-tools/debug.mk)
 
 # Include Leica//Miui Camera
-$(call inherit-product, vendor/xiaomi/miuicamera/config.mk)
+$(call inherit-product, vendor/xiaomi/miui
+$(call soong_config_set,camera,package_name,com.android.camera)
 
 # Remove unnecessary system apps (e.g., AudioFX)
 PRODUCT_PACKAGES += \
