@@ -69,6 +69,9 @@ on fs
 on late-fs
     mount_all /vendor/etc/fstab.qcom --late
 
+    # Disable native stats collection service
+    stop statsd
+
 on post-fs-data
     mkdir /data/vendor/thermal 0771 root system
     mkdir /data/vendor/thermal/config 0771 root system
