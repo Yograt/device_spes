@@ -122,9 +122,6 @@ BOARD_USES_LEGACY_IMS_SEPOLICY := true
 TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):init_xiaomi_spes
 TARGET_RECOVERY_DEVICE_MODULES := init_xiaomi_spes
 
-BOARD_KERNEL_CMDLINE +=  init.is_dt2w_sensor=1
-BOARD_KERNEL_CMDLINE +=  init.is_st2w_sensor=1
-
 # Kernel
 BOARD_KERNEL_BASE        := 0x00000000
 BOARD_KERNEL_IMAGE_NAME  := Image.gz

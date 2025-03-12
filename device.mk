@@ -470,9 +470,6 @@ PRODUCT_PACKAGES += \
     init.target.rc \
     ueventd.qcom.rc
 
-PRODUCT_PACKAGES += \
-    sensors.xiaomi.v2:64
-
 # Sensors
 PRODUCT_PACKAGES += \
     android.hardware.sensors@2.0-ScopedWakelock.vendor \
