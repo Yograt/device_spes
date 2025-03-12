@@ -4,7 +4,7 @@ GREEN="\033[0;32m"
 YELLOW="\033[1;33m"
 END="\033[0m"
 
-VENDOR_BRANCH="15.0"
+VENDOR_BRANCH="vic"
 KERNEL_BRANCH="15.0"
 HARDWARE_BRANCH="15.0"
 DEBUG_BRANCH="lineage-22"
@@ -33,7 +33,7 @@ fi
 
 if check_dir vendor/xiaomi/spes; then
     echo -e "${GREEN}Cloning vendor sources from nexys-playground (branch: ${YELLOW}$VENDOR_BRANCH${GREEN})...${END}"
-    git clone https://github.com/nexy-s-playground/vendor_xiaomi_spes -b $VENDOR_BRANCH vendor/xiaomi/spes
+    git clone https://Yograt/vendor_spes -b $VENDOR_BRANCH vendor/xiaomi/spes
 fi
 
 if check_dir kernel/xiaomi/sm6225; then
