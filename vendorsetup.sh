@@ -32,8 +32,8 @@ else
 fi
 
 if check_dir vendor/xiaomi/spes; then
-    echo -e "${GREEN}Cloning vendor sources from nexys-playground (branch: ${YELLOW}$VENDOR_BRANCH${GREEN})...${END}"
-    git clone https://Yograt/vendor_spes -b $VENDOR_BRANCH vendor/xiaomi/spes
+    echo -e "${GREEN}Cloning vendor sources from Yograt (branch: ${YELLOW}$VENDOR_BRANCH${GREEN})...${END}"
+    git clone https://github.com/Yograt/vendor_spes -b $VENDOR_BRANCH vendor/xiaomi/spes
 fi
 
 if check_dir kernel/xiaomi/sm6225; then
