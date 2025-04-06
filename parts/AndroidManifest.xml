@@ -127,12 +127,17 @@ xmlns:tools="http://schemas.android.com/tools"
             </intent-filter>
             <meta-data
                 android:name="com.android.settings.category"
-                android:value="com.android.settings.category.ia.apps" />
+                android:value="com.android.settings.category.ia.system" />
             <meta-data
                 android:name="com.android.settings.summary"
                 android:resource="@string/game_overlay_summary" />
         </activity>
 
+
+	    <meta-data
+                android:name="com.android.settings.icon"
+                android:resource="@drawable/ic_gamebar" />
+                
         <!-- GameBar Overlay Tile Service -->
         <service
             android:name=".gameoverlay.GameOverlayTileService"
