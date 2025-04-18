@@ -50,6 +50,7 @@
      private Preference mCaptureStartPref;
      private Preference mCaptureStopPref;
      private Preference mCaptureExportPref;
+     private Preference mLongPressTimeoutPref;
  
      private SwitchPreferenceCompat mDoubleTapCapturePref;
      private SwitchPreferenceCompat mSingleTapTogglePref;
