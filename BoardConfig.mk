@@ -5,6 +5,7 @@
 #
 
 DEVICE_PATH := device/xiaomi/spes
+KERNEL_PATH := kernel/xiaomi/sm6225
 
 # A/B
 AB_OTA_UPDATER := true
@@ -112,7 +113,7 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
     $(DEVICE_PATH)/configs/hidl/framework_compatibility_matrix.xml
 DEVICE_MATRIX_FILE += $(DEVICE_PATH)/configs/hidl/compatibility_matrix.xml
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/configs/hidl/manifest.xml
-ifeq ($(PRODUCT_NAME), lineage_spes)
+ifeq ($(PRODUCT_NAME), aosp_spes)
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/configs/hidl/manifest-lineage.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
     $(DEVICE_PATH)/configs/hidl/framework_compatibility_matrix-lineage.xml
