@@ -14,6 +14,9 @@ $(call inherit-product, device/xiaomi/spes/device.mk)
 # Inherit some common Lineage stuff.
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
+# Inherit Xiaomi Dolby
+$(call inherit-product, hardware/dolby/dolby.mk)
+
 # Product Specifics
 PRODUCT_NAME := lineage_spes
 PRODUCT_DEVICE := spes
