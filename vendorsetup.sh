@@ -60,12 +60,12 @@ fi
 
 if check_dir device/xiaomi/dolby; then
     echo -e "${GREEN}Cloning Dolby sources from dkpost3 (branch: ${YELLOW}$DOLBY_DEVICE_BRANCH${GREEN})...${END}"
-    git clone https://github.com/dkpost3/device_xiaomi_dolby -b $LEICA_CAMERA_BRANCH device/xiaomi/dolby
+    git clone https://github.com/dkpost3/device_xiaomi_dolby -b $DOLBY_DEVICE_BRANCH device/xiaomi/dolby
 fi
 
 if check_dir vendor/xiaomi/dolby; then
     echo -e "${GREEN}Cloning Dolby sources from dkpost3 (branch: ${YELLOW}$DOLBY_VENDOR_BRANCH${GREEN})...${END}"
-    git clone https://github.com/dkpost3/vendor_xiaomi_dolby -b $LEICA_CAMERA_BRANCH vendor/xiaomi/dolby
+    git clone https://github.com/dkpost3/vendor_xiaomi_dolby -b $DOLBY_VENDOR_BRANCH vendor/xiaomi/dolby
 fi
 
 echo -e "${YELLOW}All patches have been successfully applied; your device sources are now ready!${END}"
