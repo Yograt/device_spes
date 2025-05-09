@@ -57,7 +57,7 @@ if check_dir vendor/xiaomi/miuicamera; then
     git clone https://gitlab.com/ItzDFPlayer/vendor_xiaomi_miuicamera -b $LEICA_CAMERA_BRANCH vendor/xiaomi/miuicamera
 fi
 
-if check_dir device/xiaomi/dolby; then
+if check_dir hardware/dolby; then
     echo -e "${GREEN}Cloning Dolby sources from dkpost3 (branch: ${YELLOW}$DOLBY_HARDWARE_BRANCH${GREEN})...${END}"
     git clone https://github.com/Pong-Development/hardware_dolby -b $DOLBY_HARDWARE_BRANCH hardware/dolby
 fi
