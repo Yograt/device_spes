@@ -5,6 +5,7 @@
 #
 
 DEVICE_PATH := device/xiaomi/spes
+KERNEL_PATH := kernel/xiaomi/sm6225
 
 # A/B
 AB_OTA_UPDATER := true
@@ -81,9 +82,6 @@ BUILD_BROKEN_MISSING_REQUIRED_MODULES := true
 
 # Configs File System
 TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/configs/config.fs
-
-# Dolby
-include device/xiaomi/dolby/BoardConfig.mk
 
 # DTBO image
 BOARD_KERNEL_SEPARATED_DTBO := true
