@@ -4,6 +4,15 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+# Disable dexpreopt for crashrecovery module
+PRODUCT_SYSTEM_SERVER_DEX_PREOPT_DISABLED_MODULES += service-crashrecovery
+DONT_DEXPREOPT_BOOT_JARS += service-crashrecovery
+DONT_DEXPREOPT_APEX_JARS += service-crashrecovery
+
+# Remove from boot jars and apex jars
+PRODUCT_BOOT_JARS := $(filter-out service-crashrecovery,$(PRODUCT_BOOT_JARS))
+PRODUCT_APEX_SYSTEM_SERVER_JARS := $(filter-out com.android.crashrecovery:service-crashrecovery,$(PRODUCT_APEX_SYSTEM_SERVER_JARS))
+
 # Enable updating of APEXes
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
@@ -595,10 +604,6 @@ PRODUCT_PACKAGES += \
 
 # Include debug tool
 $(call inherit-product, hardware/samsung-ext/interfaces/debug-tools/debug.mk)
-
-# Include Leica//Miui Camera
-$(call inherit-product, vendor/xiaomi/miuicamera/config.mk)
-$(call soong_config_set,camera,package_name,com.android.camera)
 
 # Remove unnecessary system apps (e.g., AudioFX)
 PRODUCT_PACKAGES += \
