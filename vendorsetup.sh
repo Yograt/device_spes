@@ -7,7 +7,7 @@ END="\033[0m"
 VENDOR_BRANCH="16.0"
 KERNEL_BRANCH="16.0"
 HARDWARE_BRANCH="15.0"
-DEBUG_BRANCH="lineage-22"
+DEBUG_BRANCH="16.0"
 
 check_dir() {
     if [ -d "$1" ]; then
@@ -47,7 +47,7 @@ fi
 
 if check_dir hardware/samsung-ext/interfaces; then
     echo -e "${GREEN}Cloning Debugging-Tools from spes-development (branch: ${YELLOW}$DEBUG_BRANCH${GREEN})...${END}"
-    git clone https://github.com/spes-development/hardware_samsung-extra_interfaces -b $DEBUG_BRANCH hardware/samsung-ext/interfaces
+    git clone https://github.com/Yograt/hardware_samsung-extra_interfaces -b $DEBUG_BRANCH hardware/samsung-ext/interfaces
 fi
 
 echo -e "${YELLOW}All patches have been successfully applied; your device sources are now ready!${END}"
