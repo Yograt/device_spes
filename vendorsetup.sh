@@ -4,8 +4,8 @@ GREEN="\033[0;32m"
 YELLOW="\033[1;33m"
 END="\033[0m"
 
-VENDOR_BRANCH="vic"
-KERNEL_BRANCH="15.0"
+VENDOR_BRANCH="16.0"
+KERNEL_BRANCH="16.0"
 HARDWARE_BRANCH="15.0"
 DEBUG_BRANCH="lineage-22"
 
@@ -37,7 +37,7 @@ fi
 
 if check_dir kernel/xiaomi/sm6225; then
     echo -e "${GREEN}Cloning kernel sources from spes-development (branch: ${YELLOW}$KERNEL_BRANCH${GREEN})...${END}"
-    git clone https://github.com/spes-development/kernel_xiaomi_sm6225 --depth=1 -b $KERNEL_BRANCH kernel/xiaomi/sm6225
+    git clone https://github.com/yograts-playground/kernel_xiaomi_sm6225 --depth=1 -b $KERNEL_BRANCH kernel/xiaomi/sm6225
 fi
 
 if check_dir hardware/xiaomi; then

@@ -4,6 +4,8 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+PRODUCT_COMPATIBILITY_MATRIX_FILE := device/xiaomi/spes/configs/hidl/compatibility_matrix.xml
+
 # Disable dexpreopt for crashrecovery module
 PRODUCT_SYSTEM_SERVER_DEX_PREOPT_DISABLED_MODULES += service-crashrecovery
 DONT_DEXPREOPT_BOOT_JARS += service-crashrecovery
