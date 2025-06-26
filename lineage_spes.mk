@@ -28,6 +28,7 @@ TARGET_BOOT_ANIMATION_RES := 1080
 
 # EvolutionX Stuff
 WITH_GMS := true
+PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
 PRODUCT_BUILD_PROP_OVERRIDES += \
     BuildDesc="spes_global-user 13 TKQ1.221114.001 V816.0.8.0.TGCMIXM release-keys" \
     BuildFingerprint=Redmi/spes_global/spes:13/TKQ1.221114.001/V816.0.8.0.TGCMIXM:user/release-keys
