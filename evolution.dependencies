@@ -1,18 +1,22 @@
 [
   {
     "repository": "vendor_xiaomi_spes",
-    "target_path": "vendor/xiaomi/spes"
+    "target_path": "vendor/xiaomi/spes",
+    "branch": "evo16"
   },
   {
     "repository": "kernel_xiaomi_sm6225",
-    "target_path": "kernel/xiaomi/sm6225"
+    "target_path": "kernel/xiaomi/sm6225",
+    "branch": "YogratBuilds"
   },
   {
     "repository": "hardware_xiaomi",
-    "target_path": "hardware/xiaomi"
+    "target_path": "hardware/xiaomi",
+    "branch": "bka"
   },
   {
     "repository": "hardware_samsung-extra_interfaces",
-    "target_path": "hardware/xiaomi/samsung-ext/interfaces"
+    "target_path": "hardware/xiaomi/samsung-ext/interfaces",
+    "branch": "bka"
   }
 ]
