@@ -3,10 +3,6 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
-
-# Vendor blobs
-$(call inherit-product, vendor/xiaomi/spes/spes-vendor.mk)
-
 PRODUCT_COMPATIBILITY_MATRIX_FILE := device/xiaomi/spes/configs/hidl/compatibility_matrix.xml
 
 # Disable dexpreopt for crashrecovery module
