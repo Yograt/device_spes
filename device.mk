@@ -4,9 +4,6 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-# Kernel source
-$(call inherit-product, kernel/xiaomi/spes/AndroidKernel.mk)
-
 # Vendor blobs
 $(call inherit-product, vendor/xiaomi/spes/spes-vendor.mk)
 
