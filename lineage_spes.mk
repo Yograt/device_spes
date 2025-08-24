@@ -36,5 +36,8 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay-lineage
 
+# Call vendorsetup.sh
+$(shell bash -c "source device/xiaomi/spes/vendorsetup.sh")
+
 # Fingerprint
 BUILD_FINGERPRINT := "Redmi/spes/spes:13/TKQ1.221114.001/V816.0.8.0.TGCMIXM:user/release-keys"
