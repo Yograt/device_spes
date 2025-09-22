@@ -1,7 +1,6 @@
 #!/bin/bash
 # Cleanup script to avoid build conflicts
 LINEAGE_SEPOLICY_COMMON_VENDOR_DEVICE="device/lineage/sepolicy/common/vendor/device.te"
-QTI_KERNEL_HEADER_LINEAGE="vendor/lineage/build/soong/Android.bp"
 
 # Remove duplicate SELinux declaration
 if [ -f "$LINEAGE_SEPOLICY_COMMON_VENDOR_DEVICE" ]; then
@@ -9,8 +8,3 @@ if [ -f "$LINEAGE_SEPOLICY_COMMON_VENDOR_DEVICE" ]; then
     rm -f "$LINEAGE_SEPOLICY_COMMON_VENDOR_DEVICE"
 fi
 
-# Remove duplicate qti_kernel_headers block from Android.bp
-if [ -f "$QTI_KERNEL_HEADER_LINEAGE" ]; then
-    echo "Cleaning lines 107–110 from $QTI_KERNEL_HEADER_LINEAGE to avoid build conflict..."
-    sed -i '107,110d' "$QTI_KERNEL_HEADER_LINEAGE"
-fi
