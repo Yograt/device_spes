@@ -63,7 +63,6 @@ extern omx_core_cb_type component[];
 unsigned int num_components = 0;
 
 #define MAX_AUDIO_NT_SESSION 2
-#define VIDC_STUB_HAL
 
 /* ======================================================================
 FUNCTION
