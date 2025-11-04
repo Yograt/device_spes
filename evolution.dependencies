@@ -18,11 +18,5 @@
     "target_path": "hardware/samsung-ext/interfaces",
     "remote": "github-non-los",
     "branch": "bka"
-  },
-  {
-    "repository": "swiitch-OFF-Lab/hardware_dolby",
-    "target_path": "hardware/dolby",
-    "remote": "github-non-los",
-    "branch": "XiaomiDolby-15"
   }
 ]
