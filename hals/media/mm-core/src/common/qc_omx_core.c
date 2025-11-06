@@ -50,7 +50,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "omx_core_cmp.h"
 #include <cutils/properties.h>
 
-#ifndef VIDC_STUB_HAL
+#ifdef ENABLE_CONFIGSTORE
 #include "ConfigStore.h"
 #endif
 
@@ -462,19 +462,20 @@ OMX_GetHandle(OMX_OUT OMX_HANDLETYPE*     handle,
           !strncmp(component[cmp_index].so_lib_name, swDecLib, strlen(swDecLib))) {
         bool isVppEnabled = false;
         bool isCSEnabled = false;
-#ifndef VIDC_STUB_HAL
+#ifdef ENABLE_CONFIGSTORE
         isCSEnabled = isConfigStoreEnabled();
         if (isCSEnabled) {
           getConfigStoreBool("vpp", "enable", &isVppEnabled, false);
-        }
+        } else {
 #endif
-        if (!isCSEnabled) {
-          char value[PROPERTY_VALUE_MAX];
-          if ((property_get("vendor.media.vpp.enable", value, NULL))
-               && (!strcmp("1", value) || !strcmp("true", value))) {
-            isVppEnabled = true;
-          }
+        char value[PROPERTY_VALUE_MAX];
+        if ((property_get("vendor.media.vpp.enable", value, NULL))
+             && (!strcmp("1", value) || !strcmp("true", value))) {
+          isVppEnabled = true;
         }
+#ifdef ENABLE_CONFIGSTORE
+      }
+#endif
         if (isVppEnabled) {
           DEBUG_PRINT("VPP property is enabled");
           vpp_cmp_index = get_cmp_index("OMX.qti.vdec.vpp");
