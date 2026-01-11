@@ -75,10 +75,8 @@ TARGET_NO_BOOTLOADER := true
 # Build Hacks
 BUILD_BROKEN_DUP_RULES := true
 BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
-BUILD_BROKEN_INCORRECT_PARTITION_IMAGES := true
 RELAX_USES_LIBRARY_CHECK=true
 ALLOW_MISSING_DEPENDENCIES := true
-BUILD_BROKEN_MISSING_REQUIRED_MODULES := true
 
 # Configs File System
 TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/configs/config.fs
@@ -97,13 +95,6 @@ TARGET_GLOBAL_THINLTO := true
 
 # Metadata
 BOARD_USES_METADATA_PARTITION := true
-
-# HALs
-QCOM_SOONG_NAMESPACE := $(DEVICE_PATH)/hals
-DEVICE_SPECIFIC_AUDIO_PATH := $(DEVICE_PATH)/hals/audio
-DEVICE_SPECIFIC_DISPLAY_PATH := $(DEVICE_PATH)/hals/display
-DEVICE_SPECIFIC_MEDIA_PATH := $(DEVICE_PATH)/hals/media
-TARGET_USES_CUSTOM_DISPLAY_INTERFACE := true
 
 # OTA assert
 TARGET_OTA_ASSERT_DEVICE := spes,spesn
@@ -281,6 +272,3 @@ WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # Inherit from the proprietary version
 include vendor/xiaomi/spes/BoardConfigVendor.mk
-
-# Include debug tool
-include hardware/samsung-ext/interfaces/sepolicy/SEPolicy.mk

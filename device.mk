@@ -104,7 +104,6 @@ PRODUCT_COPY_FILES += \
 
 # ANT+
 PRODUCT_PACKAGES += \
-    AntHalService-Soong \
     com.dsi.ant@1.0.vendor
 
 # Audio
@@ -149,8 +148,6 @@ TARGET_ENABLE_BLUR := true
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth@1.1 \
     android.hardware.bluetooth@1.1.vendor \
-    android.hardware.bluetooth.a2dp@1.0 \
-    android.hardware.bluetooth.a2dp@1.0.vendor \
     vendor.qti.hardware.bluetooth_audio@2.1.vendor \
     vendor.qti.hardware.btconfigstore@1.0.vendor \
     vendor.qti.hardware.btconfigstore@2.0.vendor
@@ -199,7 +196,6 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.mapper@4.0-impl-qti-display \
     android.hardware.memtrack@1.0-impl \
     android.hardware.memtrack@1.0-service \
-    memtrack.bengal
 
 PRODUCT_PACKAGES += \
     vendor.display.config@1.14 \
@@ -314,7 +310,6 @@ PRODUCT_PACKAGES += \
     fstab.zram \
     init.qcom.power.rc \
     init.qcom.rc \
-    init.xiaomi.rc \
     init.recovery.qcom.rc \
     init.stnfc.rc \
     init.target.rc \
@@ -352,12 +347,7 @@ PRODUCT_PACKAGES += \
     libavservices_minijail.vendor
 
 PRODUCT_PACKAGES += \
-    libOmxAacEnc \
-    libOmxAmrEnc \
     libOmxCore \
-    libOmxEvrcEnc \
-    libOmxG711Enc \
-    libOmxQcelp13Enc \
     libOmxVdec \
     libOmxVenc
 
@@ -603,9 +593,6 @@ PRODUCT_PACKAGES += \
 # No Cutout Overlay
 PRODUCT_PACKAGES += \
     NoCutoutOverlay
-
-# Include debug tool
-$(call inherit-product, hardware/samsung-ext/interfaces/debug-tools/debug.mk)
 
 # Remove unnecessary system apps (e.g., AudioFX)
 PRODUCT_PACKAGES += \
