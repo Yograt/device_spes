@@ -5,7 +5,6 @@
 #
 
 DEVICE_PATH := device/xiaomi/spes
-KERNEL_PATH := kernel/xiaomi/sm6225
 
 # A/B
 AB_OTA_UPDATER := true
@@ -35,6 +34,12 @@ TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := generic
 TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a73
+
+# ART
+ART_BUILD_TARGET_NDEBUG := true
+ART_BUILD_TARGET_DEBUG := false
+ART_BUILD_HOST_NDEBUG := true
+ART_BUILD_HOST_DEBUG := false
 
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
@@ -74,9 +79,13 @@ TARGET_NO_BOOTLOADER := true
 
 # Build Hacks
 BUILD_BROKEN_DUP_RULES := true
+BUILD_BROKEN_ENFORCE_SYSPROP_OWNER := true
+BUILD_BROKEN_VINTF_PRODUCT_COPY_FILES := true
+BUILD_BROKEN_USES_BUILD_COPY_HEADERS := true
+BUILD_BROKEN_MISSING_REQUIRED_MODULES := true
 BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
-RELAX_USES_LIBRARY_CHECK=true
-ALLOW_MISSING_DEPENDENCIES := true
+BUILD_BROKEN_INCORRECT_PARTITION_IMAGES := true
+RELAX_USES_LIBRARY_CHECK := true
 
 # Configs File System
 TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/configs/config.fs
@@ -84,6 +93,13 @@ TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/configs/config.fs
 # DTBO image
 BOARD_KERNEL_SEPARATED_DTBO := true
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
+
+# Debug Tools
+#include hardware/samsung-ext/interfaces/sepolicy/SEPolicy.mk
+
+# Disable sparse on all filesystem images
+TARGET_USERIMAGES_SPARSE_EXT_DISABLED := true
+TARGET_USERIMAGES_SPARSE_F2FS_DISABLED := true
 
 # FM
 BOARD_HAVE_QCOM_FM := true
@@ -96,6 +112,13 @@ TARGET_GLOBAL_THINLTO := true
 # Metadata
 BOARD_USES_METADATA_PARTITION := true
 
+# HALs
+QCOM_SOONG_NAMESPACE := $(DEVICE_PATH)/hals
+DEVICE_SPECIFIC_AUDIO_PATH := $(DEVICE_PATH)/hals/audio
+DEVICE_SPECIFIC_DISPLAY_PATH := $(DEVICE_PATH)/hals/display
+DEVICE_SPECIFIC_MEDIA_PATH := $(DEVICE_PATH)/hals/media
+TARGET_USES_CUSTOM_DISPLAY_INTERFACE := true
+
 # OTA assert
 TARGET_OTA_ASSERT_DEVICE := spes,spesn
 
@@ -105,7 +128,6 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
 DEVICE_MATRIX_FILE += $(DEVICE_PATH)/configs/hidl/compatibility_matrix.xml
 DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/configs/hidl/manifest.xml
 ifeq ($(PRODUCT_NAME), lineage_spes)
-DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/configs/hidl/manifest-lineage.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
     $(DEVICE_PATH)/configs/hidl/framework_compatibility_matrix-lineage.xml
 endif
@@ -114,7 +136,7 @@ endif
 BOARD_USES_LEGACY_IMS_SEPOLICY := true
 
 # Init
-$(call soong_config_set,libinit,vendor_init_lib,//$(DEVICE_PATH):init_xiaomi_spes)
+$(call soong_config_set,libinit,vendor_init_lib,init_xiaomi_spes)
 TARGET_RECOVERY_DEVICE_MODULES := init_xiaomi_spes
 
 # Kernel
@@ -124,6 +146,7 @@ BOARD_KERNEL_OFFSET      := 0x00008000
 BOARD_KERNEL_PAGESIZE    := 4096
 BOARD_RAMDISK_OFFSET     := 0x01000000
 BOARD_TAGS_OFFSET        := 0x00000100
+BOARD_RAMDISK_USE_LZ4    := true
 
 BOARD_BOOT_HEADER_VERSION := 3
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
@@ -147,6 +170,7 @@ BOARD_KERNEL_CMDLINE += \
 
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_CONFIG := vendor/spes-perf_defconfig
+TARGET_KERNEL_HEADERS := kernel/xiaomi/sm6225
 TARGET_KERNEL_SOURCE := kernel/xiaomi/sm6225
 TARGET_KERNEL_CLANG_COMPILE := true
 TARGET_LINUX_KERNEL_VERSION := 4.19
@@ -176,7 +200,7 @@ BOARD_SUPER_PARTITION_GROUPS := qti_dynamic_partitions
 BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST := system system_ext product vendor
 BOARD_QTI_DYNAMIC_PARTITIONS_SIZE := 9122611200
 
-ifeq ($(WITH_GAPPS),true)
+ifeq ($(WITH_GMS),true)
 BOARD_PRODUCTIMAGE_PARTITION_RESERVED_SIZE := 104857600
 BOARD_SYSTEMIMAGE_PARTITION_RESERVED_SIZE := 104857600
 BOARD_SYSTEM_EXTIMAGE_PARTITION_RESERVED_SIZE := 104857600
@@ -208,7 +232,7 @@ BOARD_VENDOR := xiaomi
 TARGET_BOARD_PLATFORM := bengal
 
 # Power
-TARGET_TAP_TO_WAKE_NODE := "/sys/touchpanel/double_tap"
+TARGET_USES_INTERACTION_BOOST := true
 
 # Properties
 TARGET_ODM_PROP += $(DEVICE_PATH)/configs/props/odm.prop
@@ -235,13 +259,16 @@ TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_SCREEN_DENSITY := 440
 
 # Security patch level
-VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
+VENDOR_SECURITY_PATCH := 2024-08-01
 
 # Sensor multi HAL
 USE_SENSOR_MULTI_HAL := true
 
 # SurfaceFlinger
 TARGET_USE_AOSP_SURFACEFLINGER := true
+
+# VNDK
+BOARD_VNDK_VERSION := current
 
 # Sepolicy
 include device/qcom/sepolicy_vndr/legacy-um/SEPolicy.mk

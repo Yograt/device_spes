@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="updater_server_url" translatable="false">https://raw.githubusercontent.com/yograts-playground/ota/refs/heads/evo-spes/spes.json</string>
-    <string name="menu_changelog_url" translatable="false">https://github.com/yograts-playground/ota/blob/evo-spes/spes.md</string>
-</resources>

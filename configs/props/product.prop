@@ -5,6 +5,7 @@ ro.config.vc_call_vol_steps=11
 
 # Bluetooth
 bluetooth.device.class_of_device=90,2,12
+bluetooth.device.default_name=Redmi Note 11
 bluetooth.hardware.power.idle_cur_ma=7
 bluetooth.hardware.power.operating_voltage_mv=3700
 bluetooth.hardware.power.rx_cur_ma=75
@@ -33,6 +34,9 @@ bluetooth.profile.sap.server.enabled?=true
 bluetooth.profile.ccp.server.enabled?=true
 bluetooth.profile.vcp.controller.enabled?=true
 
+# Gboard configuration
+ro.com.google.ime.kb_pad_port_b=1
+
 # Low memory killer daemon
 ro.lmk.kill_heaviest_task=true
 ro.lmk.swap_util_max=90
@@ -45,6 +49,9 @@ ro.lmk.filecache_min_kb=150000
 
 # Display
 debug.sf.disable_backpressure=1
+
+# Display density
+ro.sf.lcd_density=420
 
 # Radio
 persist.vendor.radio.report_codec=1
@@ -64,13 +71,3 @@ ro.ril.fast.dormancy.timeout=3
 ro.mot.eri.losalert.delay=100
 ro.vold.umsdirtyratio=20
 power.saving.mode=1
-
-# Usb debugging enable
-persist.sys.usb.config=mtp,adb
-ro.adb.secure=0
-ro.debuggable=1
-
-# Zram
-ro.zram.first_wb_delay_mins=180
-ro.zram.mark_idle_delay_mins=60
-ro.zram.periodic_wb_delay_hours=24
