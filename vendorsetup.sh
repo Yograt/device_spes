@@ -12,13 +12,7 @@ rm -rf hardware/google/pixel/kernel_headers/Android.bp
 # Remove hardware/lineage/compat to avoid conflicts
 rm -rf hardware/lineage/compat/Android.bp
 
-# Kernel & Vendor Sources
-git clone --depth=1 https://github.com/sayann70/vendor_xiaomi_spes -b 16 vendor/xiaomi/spes
-git clone --depth=1 https://github.com/sayann70/kernel_xiaomi_spes -b 16 kernel/xiaomi/sm6225
-
 # Hardware/Xiaomi
-rm -fr hardware/xiaomi
-git clone https://github.com/spes-development/hardware_xiaomi hardware/xiaomi
 rm -fr hardware/xiaomi/vibrator/effect/Android.bp
 rm -fr hardware/xiaomi/hidl/touch/Android.bp
 
