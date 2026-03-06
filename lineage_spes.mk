@@ -27,7 +27,6 @@ PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 TARGET_BOOT_ANIMATION_RES := 1080
 
 # EvolutionX Flags
-EVO_BUILD_TYPE := Official
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay-lineage
