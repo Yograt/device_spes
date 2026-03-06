@@ -1,0 +1,146 @@
+# Copyright (c) 2018-2020, The Linux Foundation. All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are
+# met:
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above
+#       copyright notice, this list of conditions and the following
+#       disclaimer in the documentation and/or other materials provided
+#       with the distribution.
+#     * Neither the name of The Linux Foundation nor the names of its
+#       contributors may be used to endorse or promote products derived
+#       from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
+# WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS
+# BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+# BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+# OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+# IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+#
+
+on init
+    # Moving to init as this is needed for qseecomd
+    wait /dev/block/platform/soc/${ro.boot.bootdevice}
+    symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
+
+on fs
+    start hwservicemanager
+    mount_all /vendor/etc/fstab.qcom --early
+    chown root system /mnt/vendor/persist
+    chmod 0771 /mnt/vendor/persist
+    restorecon_recursive /mnt/vendor/persist
+    mkdir /mnt/vendor/persist/data 0700 system system
+
+    # Audio
+    chmod 0644 /mnt/vendor/persist/audio/us_manual_cal
+    chmod 0644 /persist/audio/us_manual_cal
+
+on late-fs
+    mount_all /vendor/etc/fstab.qcom --late
+
+on post-fs-data
+    restorecon_recursive /mnt/vendor/persist/rfs/msm/mpss
+    restorecon_recursive /mnt/vendor/persist/rfs/msm/mpss/lctoem.tmp
+    restorecon_recursive /mnt/vendor/persist/rfs/msm/mpss/server_check.txt
+    chown vendor_rfs vendor_rfs /mnt/vendor/persist/rfs
+    chown vendor_rfs vendor_rfs /mnt/vendor/persist/rfs/msm
+    chown vendor_rfs vendor_rfs /mnt/vendor/persist/rfs/msm/mpss
+
+    # Charger
+    chmod 0664 /sys/class/power_supply/battery/input_suspend
+    chmod 0664 /sys/class/power_supply/battery/battery_charging_enabled
+    chmod 0664 /sys/class/power_supply/usb/typec_cc_orientation
+    chown system system /sys/class/power_supply/battery/input_suspend
+    chown system system /sys/class/power_supply/battery/battery_charging_enabled
+    chown system system /sys/class/power_supply/usb/typec_cc_orientation
+
+on boot
+    # Touch funtions permissions setting
+    chown system system /sys/class/touch/touch_dev/palm_sensor
+    chmod 0664 /sys/class/touch/touch_dev/palm_sensor
+
+    # Double Tap Sensor
+    chown system system /sys/devices/platform/soc/4a88000.i2c/i2c-1/1-0038/double_tap_pressed
+    chmod 0660 /sys/devices/platform/soc/4a88000.i2c/i2c-1/1-0038/double_tap_pressed
+    # Single Tap Sensor
+    chown system system /sys/devices/platform/soc/4a88000.i2c/i2c-1/1-0038/single_tap_pressed
+    chmod 0660 /sys/devices/platform/soc/4a88000.i2c/i2c-1/1-0038/single_tap_pressed
+
+    # Sensors
+    start vendor.sensors
+
+    # Vibrator
+    chmod 0660 /sys/class/leds/vibrator/state
+    chmod 0660 /sys/class/leds/vibrator/duration
+    chmod 0666 /sys/class/leds/vibrator/activate
+    chown system system /sys/class/leds/vibrator/state
+    chown system system /sys/class/leds/vibrator/duration
+    chown system system /sys/class/leds/vibrator/activate
+
+on boot && property:persist.vendor.usb.controller.default=*
+    setprop vendor.usb.controller ${persist.vendor.usb.controller.default}
+
+on charger
+    setprop persist.sys.usb.config mass_storage
+    setprop vendor.usb.controller 4e00000.dwc3
+    start vendor.power_off_alarm
+    start vendor.qcom-post-boot
+
+on property:init.svc.vendor.charger=running
+    # Keep one LITTLE and one BIG
+    write /sys/devices/system/cpu/cpu1/online 0
+    write /sys/devices/system/cpu/cpu2/online 0
+    write /sys/devices/system/cpu/cpu3/online 0
+    write /sys/devices/system/cpu/cpu5/online 0
+    write /sys/devices/system/cpu/cpu6/online 0
+    write /sys/devices/system/cpu/cpu7/online 0
+
+service vendor.pd_mapper /vendor/bin/pd-mapper
+    class core
+    user system
+    group system
+    task_profiles ServiceCapacityLow
+
+service vendor.per_mgr /vendor/bin/pm-service
+    class core
+    user system
+    group system
+    ioprio rt 4
+    task_profiles ServiceCapacityLow
+
+service vendor.per_proxy /vendor/bin/pm-proxy
+    class core
+    user system
+    group system
+    disabled
+    task_profiles ServiceCapacityLow
+
+service vendor.mdm_launcher /vendor/bin/sh /vendor/bin/init.mdm.sh
+    class core
+    oneshot
+
+on property:init.svc.vendor.per_mgr=running
+    start vendor.per_proxy
+
+on property:sys.shutdown.requested=*
+    stop vendor.per_proxy
+
+on property:sys.boot_completed=1
+    # Read only one page at a time
+    write /proc/sys/vm/page-cluster 0
+    swapon_all /vendor/etc/fstab.zram
+
+on property:ro.boot.hwversion=*
+    setprop vendor.boot.hwversion ${ro.boot.hwversion}
+
+on property:vendor.fps_hal.restartimes=max
+    stop vendor.fps_hal
