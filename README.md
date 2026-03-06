@@ -18,5 +18,4 @@ Battery | Non-removable Li-Po 5000 mAh
 Display | 1080 x 2400 pixels, 6.43 inches (~409 ppi pixel density)
 Camera | Main 50 MP f/1.8, ultrawide lens, macro lens, depth lens, LED flash
 
-## Device picture
-![Redmi Note 11](https://i01.appmifile.com/webfile/globalimg/xm_event/jp/5dcef8e4f221e663f6c414c40d67bdf6.png?thumb=1&w=1044&h=696&width=1044&height=710)
+## Device picture ![Redmi Note 11](https://i01.appmifile.com/v1/MI_18455B3E4DA706226CF7535A58E875F0267/pms_1666350199.33692514.png "Redmi Note 11")
