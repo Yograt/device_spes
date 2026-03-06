@@ -4,14 +4,14 @@
     "target_path": "vendor/xiaomi/spes"
   },
   {
-    "repository": "kernel_xiaomi_sm6225",
-    "target_path": "kernel/xiaomi/sm6225",
+    "repository": "Yograt/device_xiaomi_spes-kernel",
+    "target_path": "device/xiaomi/spes-kernel",
+    "remote": "github-non-los",
     "branch": "bka"
   },
   {
-    "repository": "yograts-playground/hardware_xiaomi",
+    "repository": "hardware_xiaomi",
     "target_path": "hardware/xiaomi",
-    "remote": "github-non-los",
-    "branch": "16.0"
+    "branch": "bka"
   }
 ]
