@@ -138,6 +138,9 @@ PRODUCT_PACKAGES += \
 
 $(call soong_config_set_bool,QTI_GPT_UTILS,USE_BSG_FRAMEWORK,false)
 
+# Build hacks
+$(shell rm -rf hardware/xiaomi/interfaces/xiaomi/hardware/mtdservice/1.3/Android.bp)
+
 # Camera
 PRODUCT_PACKAGES += \
     libutilscallstack.vendor \
@@ -477,3 +480,4 @@ PRODUCT_COPY_FILES += \
 
 # XiaomiParts
 include packages/apps/XiaomiParts/parts.mk
+
