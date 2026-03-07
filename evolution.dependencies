@@ -15,8 +15,8 @@
     "remote": "github-non-los"
   },
   {
-    "repository": "hardware_xiaomi",
+    "repository": "android_hardware_xiaomi",
     "target_path": "hardware/xiaomi",
-    "branch": "bka"
+    "branch": "lineage-23.2"
   }
 ]
