@@ -12,7 +12,7 @@
   {
     "repository": "yograts-playground/packages_apps_XiaomiParts",
     "target_path": "packages/apps/XiaomiParts",
-    "remote": "github-non-los"
+    "remote": "github-non-los",
     "branch": "bka"
   },
   {
