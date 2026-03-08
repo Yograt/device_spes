@@ -10,9 +10,10 @@
     "branch": "bka"
   },
   {
-    "repository": "GuidixX/packages_apps_XiaomiParts",
+    "repository": "yograts-playground/packages_apps_XiaomiParts",
     "target_path": "packages/apps/XiaomiParts",
     "remote": "github-non-los"
+    "branch": "bka"
   },
   {
     "repository": "LineageOS/android_hardware_xiaomi/",
