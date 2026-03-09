@@ -481,4 +481,3 @@ $(call inherit-product, packages/apps/XiaomiParts/parts.mk)
 include packages/apps/XiaomiParts/parts.mk
 TARGET_USE_CLEARSPEAKER := true
 TARGET_USE_SATURATIONSLIDER := true
-TARGET_USE_DCDIMMING := true
